@@ -1,0 +1,9 @@
+*.md
+build
+build.gradle
+.gradle
+.solution.json
+test
+.keep
+*.sw*
+
