@@ -2,18 +2,16 @@ import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.Collectors;
 import java.util.Collections;
+import java.math.BigInteger;
 
 class HandshakeCalculator {
 
-    boolean bitTest(int number, int bit) {
-      return ((number & (1 << bit)) > 0);
-    }
-
-    List<Signal> calculateHandshake(int number) {
+    List<Signal> calculateHandshake(int number_) {
+      final BigInteger number = BigInteger.valueOf(number_);
       List<Signal> signals = Stream.of(Signal.values())
-                                   .filter(s -> bitTest(number, s.ordinal()))
+                                   .filter(s->number.testBit(s.ordinal()))
                                    .collect(Collectors.toList());
-      if (bitTest(number, 4))
+      if (number.testBit(4))
         Collections.reverse(signals);
       return signals;
     }
